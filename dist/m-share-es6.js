@@ -1,6 +1,6 @@
 /*
- * @Author: backtonature
- * @Date: 2018-05-22 20:08:19
+ * @Author: backtonature 
+ * @Date: 2018-05-22 20:08:19 
  * @Last Modified by: backtonature
  * @Last Modified time: 2018-05-29 11:24:07
  */
@@ -8,30 +8,29 @@ const userAgent = window.navigator.userAgent;
 var util = {
   loadScript(url, callback) {
     const doc = document;
-    const head =
-      doc.head || doc.getElementsByTagName("head")[0] || doc.documentElement;
-    const script = doc.createElement("script");
-    script.type = "text/javascript";
-    script.charset = "utf-8";
+    const head = doc.head || doc.getElementsByTagName('head')[0] || doc.documentElement;
+    const script = doc.createElement('script');
+    script.type = 'text/javascript';
+    script.charset = 'utf-8';
     if (script.readyState) {
-      script.onreadystatechange = function () {
+        script.onreadystatechange = function () {
         if (/loaded|complete/i.test(script.readyState)) {
           script.onreadystatechange = null;
           callback && callback.call(this);
         }
-      };
+        };
     } else {
-      script.onload = function () {
-        callback && callback.call(this);
-      };
+        script.onload = function () {
+          callback && callback.call(this);
+        };
     }
     script.src = url;
     head.insertBefore(script, head.firstChild);
   },
   execStyle(cssText) {
     const document = window.document;
-    const styleTag = document.createElement("style");
-    styleTag.setAttribute("type", "text/css");
+    const styleTag = document.createElement('style');
+    styleTag.setAttribute('type', 'text/css');
     if (document.all) {
       styleTag.styleSheet.cssText = cssText;
     } else {
@@ -46,8 +45,8 @@ var util = {
     isFromQQ: /mobile.*qq/gi.test(userAgent),
     isFromUC: /ucbrowser/gi.test(userAgent),
     isFromQQBrower: /mqqbrowser[^LightApp]/gi.test(userAgent),
-    isFromQQBrowerLight: /MQQBrowserLightApp/gi.test(userAgent),
-  },
+    isFromQQBrowerLight: /MQQBrowserLightApp/gi.test(userAgent)
+  }
 };
 
 var style = {
@@ -89,7 +88,7 @@ var style = {
     padding: 0;
   }
   #m-share-actionSheet .m-share-sheet-title {
-    font-size: 12px;
+    font-size: 10px;
     color: #ababab;
     text-align: center;
     margin:10px 0 0 0;
@@ -175,7 +174,10 @@ var style = {
   }
 
   @font-face {font-family: "m-share-iconfont";
-    src: url('data:application/x-font-ttf;charset=utf-8;base64,AAEAAAALAIAAAwAwR1NVQrD+s+0AAAE4AAAAQk9TLzJW7klQAAABfAAAAFZjbWFwN1yjwwAAAfwAAAIgZ2x5Zu3WoEMAAAQ0AAAHtGhlYWQTWW+kAAAA4AAAADZoaGVhCbAFVQAAALwAAAAkaG10eCn5//8AAAHUAAAAKGxvY2EKtAimAAAEHAAAABZtYXhwARwAiQAAARgAAAAgbmFtZT5U/n0AAAvoAAACbXBvc3Qy0j+XAAAOWAAAAIYAAQAAA4D/gABcBdL////4BdIAAQAAAAAAAAAAAAAAAAAAAAoAAQAAAAEAAHwN9GpfDzz1AAsEAAAAAADXNJXSAAAAANc0ldL///+ABdIDgwAAAAgAAgAAAAAAAAABAAAACgB9AAgAAAAAAAIAAAAKAAoAAAD/AAAAAAAAAAEAAAAKAB4ALAABREZMVAAIAAQAAAAAAAAAAQAAAAFsaWdhAAgAAAABAAAAAQAEAAQAAAABAAgAAQAGAAAAAQAAAAAAAQQzAZAABQAIAokCzAAAAI8CiQLMAAAB6wAyAQgAAAIABQMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUGZFZABAAHjnKAOA/4AAXAODAIAAAAABAAAAAAAABAAAAAPpAAAEAAAABAAAAAQA//8F0gAABD4AAAQAAAAEAAAABAAAAAAAAAUAAAADAAAALAAAAAQAAAGkAAEAAAAAAJ4AAwABAAAALAADAAoAAAGkAAQAcgAAABQAEAADAAQAeOYe5jDmQeZW5n7mrubp5yj//wAAAHjmHuYw5kHmVuZ+5q7m6eco//8AAAAAAAAAAAAAAAAAAAAAAAAAAQAUABQAFAAUABQAFAAUABQAFAAAAAEAAwAIAAQAAgAFAAYACQAHAAABBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAAAB8AAAAAAAAAAkAAAB4AAAAeAAAAAEAAOYeAADmHgAAAAMAAOYwAADmMAAAAAgAAOZBAADmQQAAAAQAAOZWAADmVgAAAAIAAOZ+AADmfgAAAAUAAOauAADmrgAAAAYAAObpAADm6QAAAAkAAOcoAADnKAAAAAcAAAAAAHYApgEeAeICKAKiAx4DfAPaAAAABQAA/+EDvAMYABMAKAAxAEQAUAAAAQYrASIOAh0BISc0LgIrARUhBRUXFA4DJyMnIQcjIi4DPQEXIgYUFjI2NCYXBgcGDwEOAR4BMyEyNicuAicBNTQ+AjsBMhYdAQEZGxpTEiUcEgOQAQoYJx6F/koCogEVHyMcDz4t/kksPxQyIBMIdwwSEhkSEowIBgUFCAICBA8OAW0XFgkFCQoG/qQFDxoVvB8pAh8BDBknGkxZDSAbEmGING4dJRcJAQGAgAETGyAOpz8RGhERGhF8GhYTEhkHEA0IGBoNIyQUAXfkCxgTDB0m4wAAAAADAAAAAAOIAYQACAARABoAAAEOASImNDYyFgUOASImNDYyFgUOASImNDYyFgEmATFJMjJJMQEyATFKMTFKMQEyATJJMTFJMgEsJTExSjExJSUxMUoxMSUlMTFKMTEAAAAGAAAAAAOyAuQAFgAfACgAOQBDAE0AAAEyFy4BJw4BBxQWFwc3HgEzMjcmJz4BJzIWFAYiJjQ2ByImNDYyFhQGBS4BJw4BBx4BFzI2NxcnPgElIiY0NjMyFhQGMyImNDYzMhYUBgKYDw8XrHSCrwNBOh9sHTMcDw4JAQOTNREVFSMcHMYSHBwkFBQChAOXa3GTAgKTcRcuF1UXLzz+pgwTEwwSFBSXDBISDBIVFQIPAV52AgORcD5nKFw1BQoBHyFniFUVIhUVIhVMFSIVFSIV9F59AgJ9Xl59AgkGLkwjWVoSGBMTGBISGBMTGBIAAAAH////4AQIAyYACgAVAB8ALgBTAGYAfAAAJTYuAQYHBh4BNj8BNi4BBgcGFxY2NxcOAS4BPgEXHgE3LgIHDgEXHgI3PgEnFxQOAy4DNzQ2Nz4BFxYHBh4BPwE2MhYHDgEeARceAhcDHgEHDgEuATc2JgcGLgE2NzYWNx4BBw4BLgE3Ni4CBwYuATY3NhYXAYILCigtCw0KJy8MNQUGDhIECRIIEARjGYF8LTV2PEA3lwZZlVJ+qAkFW5FUf6YHrylTbZSgm3ZNAk9JX8YpJRoCBAYGC097MxoBBAoECCA1JQEqGA4KBRkZDwUMMSUNGQURDCJEfjEfGAUcHw4EEBRIYjARGggSEEaKMaQSKRAQERQmFRMSRAcRBQYHEwgCBgc9OjUnamo1EBFmIjZUKAgNh1M2VCkIDoZUAydPTjcpBiFHZj9BlUhgTCklUwgGAgEDIkdBCAYIAgILID0kAWQcRSEMDgoYDiM1BgMPHBcDBxVDN5FBDxAMGxAvZk4dCQMSHxwCDyk4AAMAAP+ABdIDgAANABsAKQAAET4BNyEeARQGIyEiJicRPgE3IR4BFAYHIS4BJxE+ATMhMhYUBgchLgEnASQcBU8cJSUc+rEcJAEBJBwFTxwlJRz6sRwkAQEkHAVPHCUlHPqxHCQBAz8cJAEBJTclJRz+QRwkAQEkOCQBASQc/kEcJSU4JAEBJRsAAAAAAgAA/4AEPgODACMATgAABSEuAScRPgE3ITIWFAYjISIGFREUFjMhMjY3ET4BMhYVEQ4BAw4BLwEuAT8BBwQHDgEHBhQXFAYrASImJyY2NzYlNycuAT8BPgEXBR4BBwPm/GkhLQEBMyIBkAwQEAz+cAwREAwDiw0WAQEQGBABNHIHFgsCCgUGew3+83cpJQQDARAMAwwQAQUgRIUBJw/gCwYFAgYVCwEEFgwNgAEuIgLrIzIBEBkQEA39GwwRDw0BkAwQEAz+cCMyAiULBQcBBxYLyARArj96LhkvEwwSDww0x2zDRgN9BhYLAwsGBZENLxYAAAIAAP/7A5gC/wBOAE8AAAEOAR8BLgEnJj8BMjYvASYjIgYHMzIWFxYPAg4BFxYXMRYzMjY/AQ4BBxcWBi8BJg8BBiY/ATYmLwEmNj8BPgE/ATYyHwEeAR8BHgEPATMC3QcEAQRAhToFAvsBBQcqTFdKhTYHUaRNBAIC+AEHByYrMDRHjDgFCRwRJAIPDs8VFc4ODwMuAgIGtQsGEOYNCwVsBxMIZQQLDe4QBQuwAQEiBgoJFQEHCAECrgYCBgkODAgMAQICsAEGAQUDBA8NAQcNBsIQCwh4DQ53CAsQ8wgJBqYLEQIaAQcJ4Q8P4QsHARgCEQukAAAAAQAA/7MDrAM1ADoAABMOARcWNjcWFw4BFR4BFz4BNzMeARc+ATc0Jic2Nx4BNzYmJy4BJzcmJzU0Jy4BJw4BBwYdAQYHFw4BdBkHFA8nFRI6HiQCWUM8VQsTClU9Q1kBIx87ERUoDhQHGRQxFQEBEQcGk4GAlAYHEQEBFTABLj1fDAcdH0MxDCIVIi4BASYdHSYBAS4iFSIMMUMfHQcMXz0vPwgMJRsEEQ58ogMDonwOEQQbJQwIPwAAAAAIAAD/gQP/A38ABQALABEAFwAeACQAKgAwAAABNjMyFwMlNjc2NxMBJjU0NwUDJicmJyUTIicTAQYjAwUGBwYHAwEWFRQHAxYXFhcFAX5AQmdfCP2JIi5JYP/91BEoAXKdOS9JJgELzWdfCAFAQEI/AfghL0lgXAGJESjVOS9JJv71A20RKP6OnTkvSSb+9f6xQEJnXwj9iSIuSWD//cMoAXL+dxEBMTQ5L0kmARoBQEBCaF4CfyEvSWD/AAAAEgDeAAEAAAAAAAAAFQAAAAEAAAAAAAEACAAVAAEAAAAAAAIABwAdAAEAAAAAAAMACAAkAAEAAAAAAAQACAAsAAEAAAAAAAUACwA0AAEAAAAAAAYACAA/AAEAAAAAAAoAKwBHAAEAAAAAAAsAEwByAAMAAQQJAAAAKgCFAAMAAQQJAAEAEACvAAMAAQQJAAIADgC/AAMAAQQJAAMAEADNAAMAAQQJAAQAEADdAAMAAQQJAAUAFgDtAAMAAQQJAAYAEAEDAAMAAQQJAAoAVgETAAMAAQQJAAsAJgFpCkNyZWF0ZWQgYnkgaWNvbmZvbnQKaWNvbmZvbnRSZWd1bGFyaWNvbmZvbnRpY29uZm9udFZlcnNpb24gMS4waWNvbmZvbnRHZW5lcmF0ZWQgYnkgc3ZnMnR0ZiBmcm9tIEZvbnRlbGxvIHByb2plY3QuaHR0cDovL2ZvbnRlbGxvLmNvbQAKAEMAcgBlAGEAdABlAGQAIABiAHkAIABpAGMAbwBuAGYAbwBuAHQACgBpAGMAbwBuAGYAbwBuAHQAUgBlAGcAdQBsAGEAcgBpAGMAbwBuAGYAbwBuAHQAaQBjAG8AbgBmAG8AbgB0AFYAZQByAHMAaQBvAG4AIAAxAC4AMABpAGMAbwBuAGYAbwBuAHQARwBlAG4AZQByAGEAdABlAGQAIABiAHkAIABzAHYAZwAyAHQAdABmACAAZgByAG8AbQAgAEYAbwBuAHQAZQBsAGwAbwAgAHAAcgBvAGoAZQBjAHQALgBoAHQAdABwADoALwAvAGYAbwBuAHQAZQBsAGwAbwAuAGMAbwBtAAAAAAIAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACgECAQMBBAEFAQYBBwEIAQkBCgELAAF4BGRvdDMNNTUyY2Q1Yzc2ZjUzMgV3ZWlibwRtZW51BXNoYXJlBXF6b25lAnFxHWljb25mb250emhpenVvYmlhb3podW5iZHVhbjM2AAAAAA==') format('truetype'); /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+      src:
+       url('data:application/x-font-woff2;charset=utf-8;base64,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') format('woff2'),
+       url('//at.alicdn.com/t/c/font_4923080_mzx5q78x1d.woff?t=1747375672979') format('woff'),
+       url('//at.alicdn.com/t/c/font_4923080_mzx5q78x1d.ttf?t=1747375672979') format('truetype');
   }
   .m-share-iconfont {
     font-family:"m-share-iconfont" !important;
@@ -199,7 +201,7 @@ var style = {
     color: #fff;
   }
   .m-share-iconfont-wx:before {
-    content: "\\e61e";
+    content: "\\e618";
   }
   .m-share-iconfont-weibo {
     color: #ff763b;
@@ -211,7 +213,7 @@ var style = {
     color: #fff;
   }
   .m-share-iconfont-weibo:before {
-    content: "\\e641";
+    content: "\\e619";
   }
   .m-share-iconfont-qzone {
     color: #fdbe3d;
@@ -223,7 +225,7 @@ var style = {
     color: #fff;
   }
   .m-share-iconfont-qzone:before {
-    content: "\\e728";
+    content: "\\e61e";
   }
   .m-share-iconfont-qq {
     color: #56b6e7;
@@ -235,7 +237,31 @@ var style = {
     color: #fff;
   }
   .m-share-iconfont-qq:before {
-    content: "\\e630";
+    content: "\\e61a";
+  }
+  .m-share-iconfont-twitter {
+    color: #56b6e7;
+    border: 1px solid #56b6e7;
+    border-radius: 100%;
+  }
+  .m-share-iconfont-twitter:active {
+    background: #56b6e7;
+    color: #fff;
+  }
+  .m-share-iconfont-twitter:before {
+    content: "\\e61b";
+  }
+  .m-share-iconfont-facebook {
+    color: #56b6e7;
+    border: 1px solid #56b6e7;
+    border-radius: 100%;
+  }
+  .m-share-iconfont-facebook:active {
+    background: #56b6e7;
+    color: #fff;
+  }
+  .m-share-iconfont-facebook:before {
+    content: "\\e61f";
   }
   .m-share-iconfont-wxline {
     color: #33b045;
@@ -247,20 +273,20 @@ var style = {
     color: #fff;
   }
   .m-share-iconfont-wxline:before {
-    content: "\\e6e9";
+    content: "\\e617";
   }
   .m-share-iconfont-menu {
     font-size: 12px;
   }
   .m-share-iconfont-menu:before {
-    content: "\\e67e";
+    content: "\\e61d";
   }
   .m-share-iconfont-dots {
     font-size: 25px;
     color: #fff;
   }
   .m-share-iconfont-dots:before {
-    content: "\\e656";
+    content: "\\e61c";
   }
   .m-share-iconfont-share {
     font-size: 17px;
@@ -268,7 +294,7 @@ var style = {
     margin: 0;
   }
   .m-share-iconfont-share:before {
-    content: "\\e6ae";
+    content: "\\e620";
   }
   `,
 };
@@ -352,7 +378,7 @@ var ui = {
     window.setTimeout(() => {
       this.hideMask();
       this.hideBottomTips();
-    }, 1400);
+    }, 1500);
   },
   hideBottomTips() {
     const domList = document.querySelectorAll(".m-share-tips-bottom");
@@ -388,21 +414,20 @@ var ui = {
 };
 
 /*
- * @Author: backToNature
- * @Date: 2018-05-30 12:54:24
+ * @Author: backToNature 
+ * @Date: 2018-05-30 12:54:24 
  * @Last Modified by: backToNature
  * @Last Modified time: 2018-05-30 13:39:38
  */
 var setNormalShareInfo = (info) => {
   if (info.desc && !document.querySelector('meta[name$="cription"]')) {
-    const $meta = document.createElement("meta");
-    $meta.setAttribute("description", info.desc);
+    const $meta = document.createElement('meta');
+    $meta.setAttribute('description', info.desc);
   }
   // 添加隐藏的img标签在body最前面
   if (info.imgUrl) {
-    const $img = document.createElement("img");
-    $img.style.cssText =
-      "width: 0;height: 0;position: absolute;z-index: -9999;top: -99999px;left: -99999px;";
+    const $img = document.createElement('img');
+    $img.style.cssText = 'width: 0;height: 0;position: absolute;z-index: -9999;top: -99999px;left: -99999px;';
     $img.onload = () => {
       document.body.insertBefore($img, document.body.firstChild);
     };
@@ -414,19 +439,19 @@ var setNormalShareInfo = (info) => {
 };
 
 /*
- * @Author: backtonature
- * @Date: 2018-05-22 21:31:32
+ * @Author: backtonature 
+ * @Date: 2018-05-22 21:31:32 
  * @Last Modified by: backToNature
  * @Last Modified time: 2018-05-23 20:05:09
  */
-const qqJsSdkUrl = "//open.mobile.qq.com/sdk/qqapi.js?_bid=152";
+const qqJsSdkUrl = '//open.mobile.qq.com/sdk/qqapi.js?_bid=152';
 
 const setShareInfo = (info) => {
   mqq.data.setShareInfo({
     share_url: info.link,
     title: info.title,
     desc: info.desc,
-    image_url: info.imgUrl,
+    image_url: info.imgUrl
   });
 };
 
@@ -441,8 +466,8 @@ var setQQshareInfo = (info) => {
 };
 
 /*
- * @Author: backToNature
- * @Date: 2018-05-22 17:23:35
+ * @Author: backToNature 
+ * @Date: 2018-05-22 17:23:35 
  * @Last Modified by: backToNature
  * @Last Modified time: 2018-05-30 17:39:03
  */
@@ -455,7 +480,7 @@ var init = (config) => {
       title: config.title,
       desc: config.desc,
       link: config.link,
-      imgUrl: config.imgUrl,
+      imgUrl: config.imgUrl
     };
     isInit = true;
     ui.initStyle(); // 加载样式
@@ -464,35 +489,36 @@ var init = (config) => {
     if (config.setNormal !== false) {
       setNormalShareInfo(info);
     }
-    // 配置手q分享内容
-    if (util.ua.isFromQQ) {
+     // 配置手q分享内容
+     if (util.ua.isFromQQ) {
       setQQshareInfo(config.types, info);
     }
+
   }
 };
 
 /*
- * @Author: backToNature
- * @Date: 2018-05-22 20:12:58
+ * @Author: backToNature 
+ * @Date: 2018-05-22 20:12:58 
  * @Last Modified by: backToNature
  * @Last Modified time: 2018-05-31 15:16:45
  */
-const wxJsSdkUrl = "//res.wx.qq.com/open/js/jweixin-1.2.0.js";
+const wxJsSdkUrl = '//res.wx.qq.com/open/js/jweixin-1.2.0.js';
 
 const setShareInfo$1 = (type, info) => {
   switch (type) {
-    case "wx":
+    case 'wx':
       wx.onMenuShareAppMessage(info); // 设置分享到微信好友内容
       break;
-    case "wxline":
+    case 'wxline':
       wx.onMenuShareTimeline(info); // 设置分享到微信朋友圈内容
       break;
-    case "qq":
+    case 'qq':
       wx.onMenuShareQQ(info); // 设置分享到微信好友内容
       break;
-    case "qzone":
+    case 'qzone':
       wx.onMenuShareQZone(info); // 设置分享到qq空间
-      break;
+      break
   }
 };
 
@@ -501,46 +527,21 @@ let isConfig = false;
 var setWxShareInfo = (types, config) => {
   const wxConfig = config.wx;
   const doSet = () => {
-    const _wxConfig = Object.assign(
-      {
-        jsApiList: [
-          "onMenuShareTimeline",
-          "onMenuShareAppMessage",
-          "onMenuShareQQ",
-          "onMenuShareQZone",
-          "onMenuShareWeibo",
-        ],
-      },
-      wxConfig
-    );
+    const _wxConfig = Object.assign({
+      jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareQZone', 'onMenuShareWeibo']
+    }, wxConfig);
     if (!isConfig) {
       wx.config(_wxConfig);
       isConfig = true;
     }
     wx.ready(() => {
       try {
-        types.forEach((item) => {
+        types.forEach(item => {
           const _info = {
-            title:
-              (config.infoMap &&
-                config.infoMap[item] &&
-                config.infoMap[item].title) ||
-              config.title,
-            desc:
-              (config.infoMap &&
-                config.infoMap[item] &&
-                config.infoMap[item].desc) ||
-              config.desc,
-            link:
-              (config.infoMap &&
-                config.infoMap[item] &&
-                config.infoMap[item].link) ||
-              config.link,
-            imgUrl:
-              (config.infoMap &&
-                config.infoMap[item] &&
-                config.infoMap[item].imgUrl) ||
-              config.imgUrl,
+            title: (config.infoMap && config.infoMap[item] && config.infoMap[item].title) || config.title,
+            desc: (config.infoMap && config.infoMap[item] && config.infoMap[item].desc) || config.desc,
+            link: (config.infoMap && config.infoMap[item] && config.infoMap[item].link) || config.link,
+            imgUrl: (config.infoMap && config.infoMap[item] && config.infoMap[item].imgUrl) || config.imgUrl
           };
           setShareInfo$1(item, _info);
         });
@@ -603,12 +604,18 @@ var qqBrowserShare = (type, info) => {
     case "weibo":
       doShare(11);
       break;
+    case "twitter":
+      doShare(12);
+      break;
+    case "facebook":
+      doShare(13);
+      break;
   }
 };
 
 /*
- * @Author: backtonature
- * @Date: 2018-05-23 21:20:45
+ * @Author: backtonature 
+ * @Date: 2018-05-23 21:20:45 
  * @Last Modified by: backtonature
  * @Last Modified time: 2018-06-01 15:07:06
  */
@@ -627,26 +634,9 @@ var wxShare = (info) => {
     // uc浏览器
     ui.hideMask();
     if (util.ua.isFromIos) {
-      window.ucbrowser &&
-        window.ucbrowser.web_share(
-          info.title,
-          info.desc,
-          info.link,
-          "kWeixin",
-          info.imgUrl,
-          "",
-          ""
-        );
+      window.ucbrowser && window.ucbrowser.web_share(info.title, info.desc, info.link, 'kWeixin', info.imgUrl, '', '');
     } else {
-      window.ucweb &&
-        window.ucweb.startRequest("shell.page_share", [
-          info.title,
-          info.desc,
-          info.link,
-          "WechatFriends",
-          info.imgUrl,
-          "",
-        ]);
+      window.ucweb && window.ucweb.startRequest("shell.page_share", [info.title, info.desc, info.link, 'WechatFriends', info.imgUrl, '']);
     }
     return;
   }
@@ -654,7 +644,7 @@ var wxShare = (info) => {
   if (util.ua.isFromQQBrower) {
     // qq浏览器
     ui.hideMask();
-    qqBrowserShare("wx", info);
+    qqBrowserShare('wx', info);
     return;
   }
 
@@ -662,8 +652,8 @@ var wxShare = (info) => {
 };
 
 /*
- * @Author: backtonature
- * @Date: 2018-05-24 14:17:21
+ * @Author: backtonature 
+ * @Date: 2018-05-24 14:17:21 
  * @Last Modified by: backtonature
  * @Last Modified time: 2018-06-01 15:05:57
  */
@@ -685,26 +675,9 @@ var wxlineShare = (info) => {
     // uc浏览器
     ui.hideMask();
     if (util.ua.isFromIos) {
-      window.ucbrowser &&
-        window.ucbrowser.web_share(
-          info.title,
-          info.desc,
-          info.link,
-          "kWeixinFriend",
-          info.imgUrl,
-          "",
-          ""
-        );
+      window.ucbrowser && window.ucbrowser.web_share(info.title, info.desc, info.link, 'kWeixinFriend', info.imgUrl, '', '');
     } else {
-      window.ucweb &&
-        window.ucweb.startRequest("shell.page_share", [
-          info.title,
-          info.desc,
-          info.link,
-          "WechatTimeline",
-          info.imgUrl,
-          "",
-        ]);
+      window.ucweb && window.ucweb.startRequest("shell.page_share", [info.title, info.desc, info.link, 'WechatTimeline', info.imgUrl, '']);
     }
     return;
   }
@@ -712,7 +685,7 @@ var wxlineShare = (info) => {
   if (util.ua.isFromQQBrower) {
     // qq浏览器
     ui.hideMask();
-    qqBrowserShare("wxline", info);
+    qqBrowserShare('wxline', info);
     return;
   }
 
@@ -720,8 +693,8 @@ var wxlineShare = (info) => {
 };
 
 /*
- * @Author: backtonature
- * @Date: 2018-05-24 14:23:11
+ * @Author: backtonature 
+ * @Date: 2018-05-24 14:23:11 
  * @Last Modified by: backtonature
  * @Last Modified time: 2018-06-01 15:05:25
  */
@@ -742,7 +715,7 @@ var qqShare = (info) => {
   if (util.ua.isFromQQBrower) {
     // qq浏览器
     ui.hideMask();
-    qqBrowserShare("qq", info);
+    qqBrowserShare('qq', info);
     return;
   }
 
@@ -750,8 +723,8 @@ var qqShare = (info) => {
 };
 
 /*
- * @Author: backtonature
- * @Date: 2018-05-24 14:23:11
+ * @Author: backtonature 
+ * @Date: 2018-05-24 14:23:11 
  * @Last Modified by: backtonature
  * @Last Modified time: 2018-06-01 15:05:26
  */
@@ -772,16 +745,10 @@ var qzoneShare = (info) => {
   if (util.ua.isFromQQBrower) {
     // qq浏览器
     ui.hideMask();
-    qqBrowserShare("qzone", info);
+    qqBrowserShare('qzone', info);
     return;
   }
-  const query = `url=${encodeURIComponent(
-    info.link
-  )}&title=${encodeURIComponent(info.title)}&desc=${encodeURIComponent(
-    info.desc
-  )}&summary=${encodeURIComponent(info.desc)}&site=${encodeURIComponent(
-    info.link
-  )}`;
+  const query = `url=${encodeURIComponent(info.link)}&title=${encodeURIComponent(info.title)}&desc=${encodeURIComponent(info.desc)}&summary=${encodeURIComponent(info.desc)}&site=${encodeURIComponent(info.link)}`;
   location.href = `http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?${query}`;
 };
 
@@ -810,6 +777,50 @@ var weiboShare = (info) => {
 };
 
 /*
+ * @Author: backtonature
+ * @Date: 2018-05-24 14:23:11
+ * @Last Modified by: backtonature
+ * @Last Modified time: 2018-06-01 15:05:39
+ */
+
+var twitterShare = (info) => {
+  if (util.ua.isFromQQBrower) {
+    // qq浏览器
+    ui.hideMask();
+    qqBrowserShare("twitter", info);
+    return;
+  }
+
+  const query = `url=${encodeURIComponent(
+    info.link
+  )}&title=${encodeURIComponent(info.desc)}&via=${encodeURIComponent(
+    info.link
+  )}`;
+  location.href = `https://twitter.com/intent/tweet?${query}`;
+  // 都不是则弹层二维码提示分享
+};
+
+/*
+ * @Author: backtonature
+ * @Date: 2018-05-24 14:23:11
+ * @Last Modified by: backtonature
+ * @Last Modified time: 2018-06-01 15:05:39
+ */
+
+var facebookShare = (info) => {
+  if (util.ua.isFromQQBrower) {
+    // qq浏览器
+    ui.hideMask();
+    qqBrowserShare("facebook", info);
+    return;
+  }
+
+  const query = `u=${encodeURIComponent(info.link)}`;
+  location.href = `https://www.facebook.com/sharer/sharer.php?${query}`;
+  // 都不是则弹层二维码提示分享
+};
+
+/*
  * @Author: backToNature
  * @Date: 2018-05-22 17:23:35
  * @Last Modified by: backToNature
@@ -822,9 +833,19 @@ const shareFuncMap = {
   qq: qqShare,
   qzone: qzoneShare,
   weibo: weiboShare,
+  twitter: twitterShare,
+  facebook: facebookShare,
 };
 
-const typesMap = ["wx", "wxline", "qq", "qzone", "weibo"];
+const typesMap = [
+  "wx",
+  "wxline",
+  "qq",
+  "qzone",
+  "weibo",
+  "twitter",
+  "facebook",
+];
 
 const getDefaultConfig = (config) => {
   config = config || {};
@@ -959,6 +980,8 @@ var index = {
       qq: "QQ好友",
       qzone: "QQ空间",
       weibo: "微博",
+      twitter: "twitter",
+      facebook: "facebook",
     };
     const dom = document.createElement("div");
     dom.className = "m-share-flex";
