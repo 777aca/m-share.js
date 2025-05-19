@@ -1,9 +1,3 @@
-/*
- * @Author: backToNature
- * @Date: 2018-05-22 17:23:35
- * @Last Modified by: backToNature
- * @Last Modified time: 2018-06-01 15:00:51
- */
 import util from "./util.js";
 import ui from "./ui.js";
 import init from "./init.js";

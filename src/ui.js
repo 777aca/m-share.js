@@ -1,9 +1,3 @@
-/*
- * @Author: backtonature
- * @Date: 2018-05-27 20:08:19
- * @Last Modified by: backtonature
- * @Last Modified time: 2018-05-30 21:05:38
- */
 import util from "./util.js";
 import style from "./style.js";
 

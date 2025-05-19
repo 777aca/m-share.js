@@ -1,10 +1,3 @@
-/*
- * @Author: backtonature
- * @Date: 2018-05-23 21:36:23
- * @Last Modified by: backtonature
- * @Last Modified time: 2018-05-29 14:05:55
- */
-
 import util from "../util.js";
 
 const qqShareJsSdk = "//jsapi.qq.com/get?api=app.setShareInfo,app.share";
