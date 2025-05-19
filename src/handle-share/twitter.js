@@ -3,12 +3,12 @@ import qqBrowserShare from "./handle-qqbrowser.js";
 import ui from "../ui.js";
 
 export default (info) => {
-  if (util.ua.isFromQQBrower) {
-    // qq浏览器
-    ui.hideMask();
-    qqBrowserShare("twitter", info);
-    return;
-  }
+  // if (util.ua.isFromQQBrower) {
+  //   // qq浏览器
+  //   ui.hideMask();
+  //   qqBrowserShare("twitter", info);
+  //   return;
+  // }
 
   const query = `url=${encodeURIComponent(
     info.link

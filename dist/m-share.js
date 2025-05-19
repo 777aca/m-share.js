@@ -8,10 +8,10 @@
   var util = {
     loadScript: function loadScript(url, callback) {
       var doc = document;
-      var head = doc.head || doc.getElementsByTagName('head')[0] || doc.documentElement;
-      var script = doc.createElement('script');
-      script.type = 'text/javascript';
-      script.charset = 'utf-8';
+      var head = doc.head || doc.getElementsByTagName("head")[0] || doc.documentElement;
+      var script = doc.createElement("script");
+      script.type = "text/javascript";
+      script.charset = "utf-8";
       if (script.readyState) {
         script.onreadystatechange = function () {
           if (/loaded|complete/i.test(script.readyState)) {
@@ -29,8 +29,8 @@
     },
     execStyle: function execStyle(cssText) {
       var document = window.document;
-      var styleTag = document.createElement('style');
-      styleTag.setAttribute('type', 'text/css');
+      var styleTag = document.createElement("style");
+      styleTag.setAttribute("type", "text/css");
       if (document.all) {
         styleTag.styleSheet.cssText = cssText;
       } else {
@@ -157,13 +157,13 @@
 
   var setNormalShareInfo = (function (info) {
     if (info.desc && !document.querySelector('meta[name$="cription"]')) {
-      var $meta = document.createElement('meta');
-      $meta.setAttribute('description', info.desc);
+      var $meta = document.createElement("meta");
+      $meta.setAttribute("description", info.desc);
     }
 
     if (info.imgUrl) {
-      var $img = document.createElement('img');
-      $img.style.cssText = 'width: 0;height: 0;position: absolute;z-index: -9999;top: -99999px;left: -99999px;';
+      var $img = document.createElement("img");
+      $img.style.cssText = "width: 0;height: 0;position: absolute;z-index: -9999;top: -99999px;left: -99999px;";
       $img.onload = function () {
         document.body.insertBefore($img, document.body.firstChild);
       };
@@ -174,7 +174,7 @@
     }
   });
 
-  var qqJsSdkUrl = '//open.mobile.qq.com/sdk/qqapi.js?_bid=152';
+  var qqJsSdkUrl = "//open.mobile.qq.com/sdk/qqapi.js?_bid=152";
 
   var setShareInfo = function setShareInfo(info) {
     mqq.data.setShareInfo({
@@ -217,20 +217,20 @@
     }
   });
 
-  var wxJsSdkUrl = '//res.wx.qq.com/open/js/jweixin-1.2.0.js';
+  var wxJsSdkUrl = "//res.wx.qq.com/open/js/jweixin-1.2.0.js";
 
   var setShareInfo$1 = function setShareInfo(type, info) {
     switch (type) {
-      case 'wx':
+      case "wx":
         wx.onMenuShareAppMessage(info);
         break;
-      case 'wxline':
+      case "wxline":
         wx.onMenuShareTimeline(info);
         break;
-      case 'qq':
+      case "qq":
         wx.onMenuShareQQ(info);
         break;
-      case 'qzone':
+      case "qzone":
         wx.onMenuShareQZone(info);
         break;
     }
@@ -242,7 +242,7 @@
     var wxConfig = config.wx;
     var doSet = function doSet() {
       var _wxConfig = Object.assign({
-        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareQZone', 'onMenuShareWeibo']
+        jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone", "onMenuShareWeibo"]
       }, wxConfig);
       if (!isConfig) {
         wx.config(_wxConfig);
@@ -308,12 +308,6 @@
       case "weibo":
         doShare(11);
         break;
-      case "twitter":
-        doShare(12);
-        break;
-      case "facebook":
-        doShare(13);
-        break;
     }
   });
 
@@ -330,16 +324,16 @@
     if (util.ua.isFromUC) {
       ui.hideMask();
       if (util.ua.isFromIos) {
-        window.ucbrowser && window.ucbrowser.web_share(info.title, info.desc, info.link, 'kWeixin', info.imgUrl, '', '');
+        window.ucbrowser && window.ucbrowser.web_share(info.title, info.desc, info.link, "kWeixin", info.imgUrl, "", "");
       } else {
-        window.ucweb && window.ucweb.startRequest("shell.page_share", [info.title, info.desc, info.link, 'WechatFriends', info.imgUrl, '']);
+        window.ucweb && window.ucweb.startRequest("shell.page_share", [info.title, info.desc, info.link, "WechatFriends", info.imgUrl, ""]);
       }
       return;
     }
 
     if (util.ua.isFromQQBrower) {
       ui.hideMask();
-      qqBrowserShare('wx', info);
+      qqBrowserShare("wx", info);
       return;
     }
 
@@ -360,16 +354,16 @@
     if (util.ua.isFromUC) {
       ui.hideMask();
       if (util.ua.isFromIos) {
-        window.ucbrowser && window.ucbrowser.web_share(info.title, info.desc, info.link, 'kWeixinFriend', info.imgUrl, '', '');
+        window.ucbrowser && window.ucbrowser.web_share(info.title, info.desc, info.link, "kWeixinFriend", info.imgUrl, "", "");
       } else {
-        window.ucweb && window.ucweb.startRequest("shell.page_share", [info.title, info.desc, info.link, 'WechatTimeline', info.imgUrl, '']);
+        window.ucweb && window.ucweb.startRequest("shell.page_share", [info.title, info.desc, info.link, "WechatTimeline", info.imgUrl, ""]);
       }
       return;
     }
 
     if (util.ua.isFromQQBrower) {
       ui.hideMask();
-      qqBrowserShare('wxline', info);
+      qqBrowserShare("wxline", info);
       return;
     }
 
@@ -389,7 +383,7 @@
 
     if (util.ua.isFromQQBrower) {
       ui.hideMask();
-      qqBrowserShare('qq', info);
+      qqBrowserShare("qq", info);
       return;
     }
 
@@ -409,11 +403,11 @@
 
     if (util.ua.isFromQQBrower) {
       ui.hideMask();
-      qqBrowserShare('qzone', info);
+      qqBrowserShare("qzone", info);
       return;
     }
-    var query = 'url=' + encodeURIComponent(info.link) + '&title=' + encodeURIComponent(info.title) + '&desc=' + encodeURIComponent(info.desc) + '&summary=' + encodeURIComponent(info.desc) + '&site=' + encodeURIComponent(info.link);
-    location.href = 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?' + query;
+    var query = "url=" + encodeURIComponent(info.link) + "&title=" + encodeURIComponent(info.title) + "&desc=" + encodeURIComponent(info.desc) + "&summary=" + encodeURIComponent(info.desc) + "&site=" + encodeURIComponent(info.link);
+    location.href = "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?" + query;
   });
 
   var weiboShare = (function (info) {
@@ -428,22 +422,12 @@
   });
 
   var twitterShare = (function (info) {
-    if (util.ua.isFromQQBrower) {
-      ui.hideMask();
-      qqBrowserShare("twitter", info);
-      return;
-    }
 
     var query = "url=" + encodeURIComponent(info.link) + "&title=" + encodeURIComponent(info.desc) + "&via=" + encodeURIComponent(info.link);
     location.href = "https://twitter.com/intent/tweet?" + query;
   });
 
   var facebookShare = (function (info) {
-    if (util.ua.isFromQQBrower) {
-      ui.hideMask();
-      qqBrowserShare("facebook", info);
-      return;
-    }
 
     var query = "u=" + encodeURIComponent(info.link);
     location.href = "https://www.facebook.com/sharer/sharer.php?" + query;

@@ -40,11 +40,5 @@ export default (type, info) => {
     case "weibo":
       doShare(11);
       break;
-    case "twitter":
-      doShare(12);
-      break;
-    case "facebook":
-      doShare(13);
-      break;
   }
 };

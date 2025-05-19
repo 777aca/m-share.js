@@ -1,36 +1,31 @@
-/*
- * @Author: backtonature 
- * @Date: 2018-05-22 20:08:19 
- * @Last Modified by: backtonature
- * @Last Modified time: 2018-05-29 11:24:07
- */
 const userAgent = window.navigator.userAgent;
 var util = {
   loadScript(url, callback) {
     const doc = document;
-    const head = doc.head || doc.getElementsByTagName('head')[0] || doc.documentElement;
-    const script = doc.createElement('script');
-    script.type = 'text/javascript';
-    script.charset = 'utf-8';
+    const head =
+      doc.head || doc.getElementsByTagName("head")[0] || doc.documentElement;
+    const script = doc.createElement("script");
+    script.type = "text/javascript";
+    script.charset = "utf-8";
     if (script.readyState) {
-        script.onreadystatechange = function () {
+      script.onreadystatechange = function () {
         if (/loaded|complete/i.test(script.readyState)) {
           script.onreadystatechange = null;
           callback && callback.call(this);
         }
-        };
+      };
     } else {
-        script.onload = function () {
-          callback && callback.call(this);
-        };
+      script.onload = function () {
+        callback && callback.call(this);
+      };
     }
     script.src = url;
     head.insertBefore(script, head.firstChild);
   },
   execStyle(cssText) {
     const document = window.document;
-    const styleTag = document.createElement('style');
-    styleTag.setAttribute('type', 'text/css');
+    const styleTag = document.createElement("style");
+    styleTag.setAttribute("type", "text/css");
     if (document.all) {
       styleTag.styleSheet.cssText = cssText;
     } else {
@@ -45,8 +40,8 @@ var util = {
     isFromQQ: /mobile.*qq/gi.test(userAgent),
     isFromUC: /ucbrowser/gi.test(userAgent),
     isFromQQBrower: /mqqbrowser[^LightApp]/gi.test(userAgent),
-    isFromQQBrowerLight: /MQQBrowserLightApp/gi.test(userAgent)
-  }
+    isFromQQBrowerLight: /MQQBrowserLightApp/gi.test(userAgent),
+  },
 };
 
 var style = {
@@ -299,13 +294,6 @@ var style = {
   `,
 };
 
-/*
- * @Author: backtonature
- * @Date: 2018-05-27 20:08:19
- * @Last Modified by: backtonature
- * @Last Modified time: 2018-05-30 21:05:38
- */
-
 let isStyleLoaded = false;
 var ui = {
   initStyle() {
@@ -413,21 +401,16 @@ var ui = {
   },
 };
 
-/*
- * @Author: backToNature 
- * @Date: 2018-05-30 12:54:24 
- * @Last Modified by: backToNature
- * @Last Modified time: 2018-05-30 13:39:38
- */
 var setNormalShareInfo = (info) => {
   if (info.desc && !document.querySelector('meta[name$="cription"]')) {
-    const $meta = document.createElement('meta');
-    $meta.setAttribute('description', info.desc);
+    const $meta = document.createElement("meta");
+    $meta.setAttribute("description", info.desc);
   }
   // 添加隐藏的img标签在body最前面
   if (info.imgUrl) {
-    const $img = document.createElement('img');
-    $img.style.cssText = 'width: 0;height: 0;position: absolute;z-index: -9999;top: -99999px;left: -99999px;';
+    const $img = document.createElement("img");
+    $img.style.cssText =
+      "width: 0;height: 0;position: absolute;z-index: -9999;top: -99999px;left: -99999px;";
     $img.onload = () => {
       document.body.insertBefore($img, document.body.firstChild);
     };
@@ -438,20 +421,14 @@ var setNormalShareInfo = (info) => {
   }
 };
 
-/*
- * @Author: backtonature 
- * @Date: 2018-05-22 21:31:32 
- * @Last Modified by: backToNature
- * @Last Modified time: 2018-05-23 20:05:09
- */
-const qqJsSdkUrl = '//open.mobile.qq.com/sdk/qqapi.js?_bid=152';
+const qqJsSdkUrl = "//open.mobile.qq.com/sdk/qqapi.js?_bid=152";
 
 const setShareInfo = (info) => {
   mqq.data.setShareInfo({
     share_url: info.link,
     title: info.title,
     desc: info.desc,
-    image_url: info.imgUrl
+    image_url: info.imgUrl,
   });
 };
 
@@ -465,13 +442,6 @@ var setQQshareInfo = (info) => {
   }
 };
 
-/*
- * @Author: backToNature 
- * @Date: 2018-05-22 17:23:35 
- * @Last Modified by: backToNature
- * @Last Modified time: 2018-05-30 17:39:03
- */
-
 let isInit = false;
 
 var init = (config) => {
@@ -480,7 +450,7 @@ var init = (config) => {
       title: config.title,
       desc: config.desc,
       link: config.link,
-      imgUrl: config.imgUrl
+      imgUrl: config.imgUrl,
     };
     isInit = true;
     ui.initStyle(); // 加载样式
@@ -489,36 +459,29 @@ var init = (config) => {
     if (config.setNormal !== false) {
       setNormalShareInfo(info);
     }
-     // 配置手q分享内容
-     if (util.ua.isFromQQ) {
+    // 配置手q分享内容
+    if (util.ua.isFromQQ) {
       setQQshareInfo(config.types, info);
     }
-
   }
 };
 
-/*
- * @Author: backToNature 
- * @Date: 2018-05-22 20:12:58 
- * @Last Modified by: backToNature
- * @Last Modified time: 2018-05-31 15:16:45
- */
-const wxJsSdkUrl = '//res.wx.qq.com/open/js/jweixin-1.2.0.js';
+const wxJsSdkUrl = "//res.wx.qq.com/open/js/jweixin-1.2.0.js";
 
 const setShareInfo$1 = (type, info) => {
   switch (type) {
-    case 'wx':
+    case "wx":
       wx.onMenuShareAppMessage(info); // 设置分享到微信好友内容
       break;
-    case 'wxline':
+    case "wxline":
       wx.onMenuShareTimeline(info); // 设置分享到微信朋友圈内容
       break;
-    case 'qq':
+    case "qq":
       wx.onMenuShareQQ(info); // 设置分享到微信好友内容
       break;
-    case 'qzone':
+    case "qzone":
       wx.onMenuShareQZone(info); // 设置分享到qq空间
-      break
+      break;
   }
 };
 
@@ -527,21 +490,46 @@ let isConfig = false;
 var setWxShareInfo = (types, config) => {
   const wxConfig = config.wx;
   const doSet = () => {
-    const _wxConfig = Object.assign({
-      jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareQZone', 'onMenuShareWeibo']
-    }, wxConfig);
+    const _wxConfig = Object.assign(
+      {
+        jsApiList: [
+          "onMenuShareTimeline",
+          "onMenuShareAppMessage",
+          "onMenuShareQQ",
+          "onMenuShareQZone",
+          "onMenuShareWeibo",
+        ],
+      },
+      wxConfig
+    );
     if (!isConfig) {
       wx.config(_wxConfig);
       isConfig = true;
     }
     wx.ready(() => {
       try {
-        types.forEach(item => {
+        types.forEach((item) => {
           const _info = {
-            title: (config.infoMap && config.infoMap[item] && config.infoMap[item].title) || config.title,
-            desc: (config.infoMap && config.infoMap[item] && config.infoMap[item].desc) || config.desc,
-            link: (config.infoMap && config.infoMap[item] && config.infoMap[item].link) || config.link,
-            imgUrl: (config.infoMap && config.infoMap[item] && config.infoMap[item].imgUrl) || config.imgUrl
+            title:
+              (config.infoMap &&
+                config.infoMap[item] &&
+                config.infoMap[item].title) ||
+              config.title,
+            desc:
+              (config.infoMap &&
+                config.infoMap[item] &&
+                config.infoMap[item].desc) ||
+              config.desc,
+            link:
+              (config.infoMap &&
+                config.infoMap[item] &&
+                config.infoMap[item].link) ||
+              config.link,
+            imgUrl:
+              (config.infoMap &&
+                config.infoMap[item] &&
+                config.infoMap[item].imgUrl) ||
+              config.imgUrl,
           };
           setShareInfo$1(item, _info);
         });
@@ -556,13 +544,6 @@ var setWxShareInfo = (types, config) => {
     });
   }
 };
-
-/*
- * @Author: backtonature
- * @Date: 2018-05-23 21:36:23
- * @Last Modified by: backtonature
- * @Last Modified time: 2018-05-29 14:05:55
- */
 
 const qqShareJsSdk = "//jsapi.qq.com/get?api=app.setShareInfo,app.share";
 
@@ -605,20 +586,13 @@ var qqBrowserShare = (type, info) => {
       doShare(11);
       break;
     case "twitter":
-      doShare(12);
+      doShare(1);
       break;
     case "facebook":
       doShare(13);
       break;
   }
 };
-
-/*
- * @Author: backtonature 
- * @Date: 2018-05-23 21:20:45 
- * @Last Modified by: backtonature
- * @Last Modified time: 2018-06-01 15:07:06
- */
 
 var wxShare = (info) => {
   if (util.ua.isFromWx) {
@@ -634,9 +608,26 @@ var wxShare = (info) => {
     // uc浏览器
     ui.hideMask();
     if (util.ua.isFromIos) {
-      window.ucbrowser && window.ucbrowser.web_share(info.title, info.desc, info.link, 'kWeixin', info.imgUrl, '', '');
+      window.ucbrowser &&
+        window.ucbrowser.web_share(
+          info.title,
+          info.desc,
+          info.link,
+          "kWeixin",
+          info.imgUrl,
+          "",
+          ""
+        );
     } else {
-      window.ucweb && window.ucweb.startRequest("shell.page_share", [info.title, info.desc, info.link, 'WechatFriends', info.imgUrl, '']);
+      window.ucweb &&
+        window.ucweb.startRequest("shell.page_share", [
+          info.title,
+          info.desc,
+          info.link,
+          "WechatFriends",
+          info.imgUrl,
+          "",
+        ]);
     }
     return;
   }
@@ -644,19 +635,12 @@ var wxShare = (info) => {
   if (util.ua.isFromQQBrower) {
     // qq浏览器
     ui.hideMask();
-    qqBrowserShare('wx', info);
+    qqBrowserShare("wx", info);
     return;
   }
 
   ui.showBottomTips();
 };
-
-/*
- * @Author: backtonature 
- * @Date: 2018-05-24 14:17:21 
- * @Last Modified by: backtonature
- * @Last Modified time: 2018-06-01 15:05:57
- */
 
 var wxlineShare = (info) => {
   if (util.ua.isFromWx) {
@@ -675,9 +659,26 @@ var wxlineShare = (info) => {
     // uc浏览器
     ui.hideMask();
     if (util.ua.isFromIos) {
-      window.ucbrowser && window.ucbrowser.web_share(info.title, info.desc, info.link, 'kWeixinFriend', info.imgUrl, '', '');
+      window.ucbrowser &&
+        window.ucbrowser.web_share(
+          info.title,
+          info.desc,
+          info.link,
+          "kWeixinFriend",
+          info.imgUrl,
+          "",
+          ""
+        );
     } else {
-      window.ucweb && window.ucweb.startRequest("shell.page_share", [info.title, info.desc, info.link, 'WechatTimeline', info.imgUrl, '']);
+      window.ucweb &&
+        window.ucweb.startRequest("shell.page_share", [
+          info.title,
+          info.desc,
+          info.link,
+          "WechatTimeline",
+          info.imgUrl,
+          "",
+        ]);
     }
     return;
   }
@@ -685,19 +686,12 @@ var wxlineShare = (info) => {
   if (util.ua.isFromQQBrower) {
     // qq浏览器
     ui.hideMask();
-    qqBrowserShare('wxline', info);
+    qqBrowserShare("wxline", info);
     return;
   }
 
   ui.showBottomTips();
 };
-
-/*
- * @Author: backtonature 
- * @Date: 2018-05-24 14:23:11 
- * @Last Modified by: backtonature
- * @Last Modified time: 2018-06-01 15:05:25
- */
 
 var qqShare = (info) => {
   if (util.ua.isFromWx) {
@@ -715,19 +709,12 @@ var qqShare = (info) => {
   if (util.ua.isFromQQBrower) {
     // qq浏览器
     ui.hideMask();
-    qqBrowserShare('qq', info);
+    qqBrowserShare("qq", info);
     return;
   }
 
   ui.showBottomTips();
 };
-
-/*
- * @Author: backtonature 
- * @Date: 2018-05-24 14:23:11 
- * @Last Modified by: backtonature
- * @Last Modified time: 2018-06-01 15:05:26
- */
 
 var qzoneShare = (info) => {
   if (util.ua.isFromWx) {
@@ -745,19 +732,18 @@ var qzoneShare = (info) => {
   if (util.ua.isFromQQBrower) {
     // qq浏览器
     ui.hideMask();
-    qqBrowserShare('qzone', info);
+    qqBrowserShare("qzone", info);
     return;
   }
-  const query = `url=${encodeURIComponent(info.link)}&title=${encodeURIComponent(info.title)}&desc=${encodeURIComponent(info.desc)}&summary=${encodeURIComponent(info.desc)}&site=${encodeURIComponent(info.link)}`;
+  const query = `url=${encodeURIComponent(
+    info.link
+  )}&title=${encodeURIComponent(info.title)}&desc=${encodeURIComponent(
+    info.desc
+  )}&summary=${encodeURIComponent(info.desc)}&site=${encodeURIComponent(
+    info.link
+  )}`;
   location.href = `http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?${query}`;
 };
-
-/*
- * @Author: backtonature
- * @Date: 2018-05-24 14:23:11
- * @Last Modified by: backtonature
- * @Last Modified time: 2018-06-01 15:05:39
- */
 
 var weiboShare = (info) => {
   if (util.ua.isFromQQBrower) {
@@ -776,13 +762,6 @@ var weiboShare = (info) => {
   // 都不是则弹层二维码提示分享
 };
 
-/*
- * @Author: backtonature
- * @Date: 2018-05-24 14:23:11
- * @Last Modified by: backtonature
- * @Last Modified time: 2018-06-01 15:05:39
- */
-
 var twitterShare = (info) => {
   if (util.ua.isFromQQBrower) {
     // qq浏览器
@@ -800,13 +779,6 @@ var twitterShare = (info) => {
   // 都不是则弹层二维码提示分享
 };
 
-/*
- * @Author: backtonature
- * @Date: 2018-05-24 14:23:11
- * @Last Modified by: backtonature
- * @Last Modified time: 2018-06-01 15:05:39
- */
-
 var facebookShare = (info) => {
   if (util.ua.isFromQQBrower) {
     // qq浏览器
@@ -819,13 +791,6 @@ var facebookShare = (info) => {
   location.href = `https://www.facebook.com/sharer/sharer.php?${query}`;
   // 都不是则弹层二维码提示分享
 };
-
-/*
- * @Author: backToNature
- * @Date: 2018-05-22 17:23:35
- * @Last Modified by: backToNature
- * @Last Modified time: 2018-06-01 15:00:51
- */
 
 const shareFuncMap = {
   wx: wxShare,
